@@ -15,3 +15,13 @@ Once that is done, you shall:
   * What happens when the element does not exist in the list? Find a solution.
   * What happens if we want to remove the first element? Can you imagine a solution ?
   * What happens if we want to remove the first and only element ?
+
+## At Home
+
+Write a method that sorts the list:
+
+* Do not change number values, only modify pointers between nodes
+* You shall return a pointer to the new head of the list
+* The head of the list can change
+* You may use any sorting algorithm you want
+* You should write an iterative function, easier to code, but you are free to implement it recursively if you feel like it. 
