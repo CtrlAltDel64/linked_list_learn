@@ -34,6 +34,11 @@ public:
 	void AddRecursive(int v);
 
 	ListOfNumbers * FindRecursive(int v);
+
+	//Added Methods
+	ListOfNumbers * FindIterative(int v);
+	ListOfNumbers * Remove(int v);
+	~ListOfNumbers();
 };
 
 

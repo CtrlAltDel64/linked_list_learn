@@ -9,15 +9,13 @@ using namespace std;
         usage : ListOfNumbers *x = new ListOfNumbers();
                 ListOfNumbers *x = new ListOfNumbers(12);
    ------------------------------------------------------------------------ */
-ListOfNumbers::ListOfNumbers()
-{
+ListOfNumbers::ListOfNumbers() {
 	number = 0;
 	next = NULL;
 }
 
 /* ------------------------------------------------------------------------ */
-ListOfNumbers::ListOfNumbers(int v)
-{
+ListOfNumbers::ListOfNumbers(int v) {
 	number = v;
 	next = NULL;
 }
@@ -26,14 +24,12 @@ ListOfNumbers::ListOfNumbers(int v)
    Set Methods for the class
         usage : x->SetValue(15);
    ------------------------------------------------------------------------ */
-void ListOfNumbers::SetValue(int v)
-{
+void ListOfNumbers::SetValue(int v) {
 	number = v;
 }
 
 /* ------------------------------------------------------------------------ */
-void ListOfNumbers::SetNext(ListOfNumbers *n)
-{
+void ListOfNumbers::SetNext(ListOfNumbers *n) {
 	next = n;
 }
 
@@ -44,14 +40,12 @@ void ListOfNumbers::SetNext(ListOfNumbers *n)
                   called on)
     	PrintListIterative() does the same as PrintList() in an iterative way
    ------------------------------------------------------------------------ */
-void ListOfNumbers::PrintItem()
-{
+void ListOfNumbers::PrintItem() {
 	cout << "Number is equal to " << number << endl;
 }
 
 /* ------------------------------------------------------------------------ */
-void ListOfNumbers::PrintList()
-{
+void ListOfNumbers::PrintList() {
 	PrintItem();
 
 	if (next != NULL)
@@ -59,8 +53,7 @@ void ListOfNumbers::PrintList()
 }
 
 /* ------------------------------------------------------------------------ */
-void ListOfNumbers::PrintListIterative()
-{
+void ListOfNumbers::PrintListIterative() {
 	ListOfNumbers *p = this;
 
 	while (p != NULL)
@@ -78,8 +71,7 @@ void ListOfNumbers::PrintListIterative()
                new element (value affectation supposed to be done outside the class)
         AddRecursive - recursive version of Add(int v)
    ------------------------------------------------------------------------ */
-void ListOfNumbers::Add(ListOfNumbers *n)
-{
+void ListOfNumbers::Add(ListOfNumbers *n) {
 	ListOfNumbers *p = this;
 
 	while (p->next != NULL)
@@ -91,8 +83,7 @@ void ListOfNumbers::Add(ListOfNumbers *n)
 }
 
 /* ------------------------------------------------------------------------ */
-void ListOfNumbers::Add(int v)
-{
+void ListOfNumbers::Add(int v) {
 	ListOfNumbers *p = this;
 
 	while (p->next != NULL)
@@ -104,8 +95,7 @@ void ListOfNumbers::Add(int v)
 }
 
 /* ------------------------------------------------------------------------ */
-void ListOfNumbers::AddRecursive(int v)
-{
+void ListOfNumbers::AddRecursive(int v) {
 	if (next == NULL)
 		next = new ListOfNumbers(v);
 	else
@@ -114,12 +104,10 @@ void ListOfNumbers::AddRecursive(int v)
 
 
 /* ------------------------------------------------------------------------ */
-ListOfNumbers *ListOfNumbers::Add()
-{
+ListOfNumbers *ListOfNumbers::Add() {
 	ListOfNumbers *p = this;
 
-	while (p->next != NULL)
-	{
+	while (p->next != NULL) {
 		p = p->next;
 	}
 
@@ -134,8 +122,7 @@ ListOfNumbers *ListOfNumbers::Add()
             Returns NULL if not found
    ------------------------------------------------------------------------ */
 
-ListOfNumbers * ListOfNumbers::FindRecursive(int v)
-{
+ListOfNumbers * ListOfNumbers::FindRecursive(int v) {
 	if (number == v)
 		return this;
 
@@ -143,6 +130,67 @@ ListOfNumbers * ListOfNumbers::FindRecursive(int v)
 		return NULL;
 
 	return next->FindRecursive(v);
+}
 
+/* ------------------------------------------------------------------------
+		Added Methods
+			FindIterative +
+			Remove +
+			Sort
+			Destructor +
+   ------------------------------------------------------------------------ */
+
+ListOfNumbers * ListOfNumbers::FindIterative(int v) {
+	ListOfNumbers *p = this;
+
+	if (number == v)
+		return this;
+
+	while (p->next != NULL) {
+		p = p->next;
+		if (p->number == v)
+			return p;
+	}
+
+	return NULL;
+}
+
+ListOfNumbers * ListOfNumbers::Remove(int v) { //assuming no value repetitions (list is a set)
+	ListOfNumbers *p1 = this;
+
+	if (number == v) {
+		p1 = next;
+		next = NULL;
+
+		cout << "\nNew list start.\n";
+		return p1 //returns pointer to next object in list, new list start
+	}
+
+	ListOfNumbers *p2 = this;
+	while (p1->next != NULL) {
+		p1 = p1->next;
+		if (p1->number == v) {
+			p2->next = p1->next;
+			*p1->next = NULL;
+			delete p1;
+			cout << "\nValue removed.\n";
+			return this; //returns list start (unchanged)
+		}
+
+		if (p1->next == NULL) {
+			cout << "\nNo such value found.\n";
+			return this; //returns list start (unchanged)
+		}
+
+		*p2 = *p1;
+	}
+
+
+
+}
+
+ListOfNumbers::~ListOfNumbers(){ //recursive
+	if (next != NULL)
+		delete next; //will call destructor before deallocating object, resulting in successful recursive deletion
 
 }
