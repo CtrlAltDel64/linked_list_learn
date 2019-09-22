@@ -38,6 +38,7 @@ public:
 	//Added Methods
 	ListOfNumbers * FindIterative(int v);
 	ListOfNumbers * Remove(int v);
+	ListOfNumbers * Sort(); // smallest to greatest, returns list head;
 	~ListOfNumbers();
 };
 

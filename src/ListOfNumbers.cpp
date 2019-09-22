@@ -155,6 +155,7 @@ ListOfNumbers * ListOfNumbers::FindIterative(int v) {
 	return NULL;
 }
 
+	//returns list head
 ListOfNumbers * ListOfNumbers::Remove(int v) { //assuming no value repetitions (list is a set)
 	ListOfNumbers *p1 = this;
 
@@ -184,13 +185,39 @@ ListOfNumbers * ListOfNumbers::Remove(int v) { //assuming no value repetitions (
 
 		*p2 = *p1;
 	}
+}
 
+ListOfNumbers * ListOfNumbers::Sort() {
+	ListOfNumbers *head = this;
+	ListOfNumbers *before = this;
+	ListOfNumbers *current = this;
+	ListOfNumbers *scan = this;
+	int min = number;
 
+	if (next = NULL)
+		return this;
 
+	while (current->next != NULL) { //run until end of list
+		while (scan->next != NULL) { //search for minimum
+			scan = scan->next;
+			if (scan->number < number) {
+				min = scan->number;
+			}
+		}
+		if (head = current && min < number) { //pointer edits if modifying list head
+
+		}
+		else () { //pointer edits if not modifying list body
+
+		}
+		current = current->next; //increment search and replace source
+		scan = current;
+	}
+	*current->next = NULL;
+	return head;
 }
 
 ListOfNumbers::~ListOfNumbers(){ //recursive
 	if (next != NULL)
 		delete next; //will call destructor before deallocating object, resulting in successful recursive deletion
-
 }

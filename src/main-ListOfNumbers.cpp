@@ -24,4 +24,7 @@ int main() {
 
  cout << "List 2 : " << endl;
  c->PrintList();
+
+ //Additions:
+ a = a->Remove(10);
 }
