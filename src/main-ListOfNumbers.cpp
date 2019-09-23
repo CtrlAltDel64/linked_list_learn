@@ -27,4 +27,5 @@ int main() {
 
  //Additions:
  a = a->Remove(10);
+ a = a->Sort();
 }

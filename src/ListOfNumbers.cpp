@@ -205,12 +205,17 @@ ListOfNumbers * ListOfNumbers::Sort() {
 			}
 		}
 		if (head = current && min < number) { //pointer edits if modifying list head
-
+			scan = current->next;
+			while (scan->number != min) {
+				scan = scan->next;
+				before = before->next; //before pointer is always one behind scan pointer
+			}
 		}
 		else () { //pointer edits if not modifying list body
 
 		}
 		current = current->next; //increment search and replace source
+		min = current->number;
 		scan = current;
 	}
 	*current->next = NULL;
