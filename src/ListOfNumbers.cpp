@@ -188,32 +188,64 @@ ListOfNumbers * ListOfNumbers::Remove(int v) { //assuming no value repetitions (
 }
 
 ListOfNumbers * ListOfNumbers::Sort() {
-	ListOfNumbers *head = this;
-	ListOfNumbers *before = this;
-	ListOfNumbers *current = this;
-	ListOfNumbers *scan = this;
-	int min = number;
+	ListOfNumbers * min = this;
+	ListOfNumbers * head;
+	ListOfNumbers * current = this;
+	ListOfNumbers * scan = current;
+	ListOfNumbers * end;
 
-	if (next = NULL)
-		return this;
-
-	while (current->next != NULL) { //run until end of list
-		while (scan->next != NULL) { //search for minimum
+	//first sort iteration
+	while (scan->next != NULL) {
+		if (scan->number < min->number) {
+			min = scan;
+		}
+		scan = scan->next;
+		if (scan->next == NULL) {
+			end = next;
+		}
+	}
+	if (min != current) {
+		while (scan->next != min) {
 			scan = scan->next;
-			if (scan->number < number) {
-				min = scan->number;
+		}
+		scan->next = min->next;
+	}
+	if (min == current) {
+		current = current->next;
+	}
+	end->next = min;
+	min->next = NULL;
+	head = end;
+
+	current = current->next;
+
+	//remaining sort iterations
+	while (current != head) {
+		while (scan->next != NULL) {
+			if (scan->number < min->number) {
+				min = scan;
+			}
+			scan = scan->next;
+			if (scan->next == NULL) {
+				end = next;
 			}
 		}
-		if (head = current && min < number) { //pointer edits if modifying list head
-
+		if (min != current) {
+			while (scan->next != min) {
+				scan = scan->next;
+			}
+			scan->next = min->next;
 		}
-		else () { //pointer edits if not modifying list body
-
+		if (min == current) {
+			current = current->next;
 		}
-		current = current->next; //increment search and replace source
-		scan = current;
+		end->next = min;
+		min->next = NULL;
+		if (current->next != NULL) {
+			current = current->next;
+		}
 	}
-	*current->next = NULL;
+
 	return head;
 }
 
